@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
-import Header from "./components/Layout/Header";
+import Header from "./components/layout/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import AddProject from "./components/Project/AddProject";
+import AddProject from "./components/project/AddProject";
 import { Provider } from "react-redux";
 import store from "./store";
-import UpdateProject from "./components/Project/UpdateProject";
+import UpdateProject from "./components/project/UpdateProject";
 
 class App extends Component {
   render() {
