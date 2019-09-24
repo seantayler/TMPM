@@ -1,4 +1,10 @@
 package com.seantayler.tmpm.repositories;
 
-public interface ProjectTaskRepository {
+import com.seantayler.tmpm.domain.ProjectTask;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ProjectTaskRepository extends CrudRepository<ProjectTask, Long> {
+
 }
