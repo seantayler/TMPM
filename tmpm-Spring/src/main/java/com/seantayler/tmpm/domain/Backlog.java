@@ -8,19 +8,25 @@ import java.util.List;
 
 @Entity
 public class Backlog {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer PTSequence = 0;
-    private String ProjectIdentifier;
+    private String projectIdentifier;
 
+    //OneToOne with project
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="project_id", nullable = false)
+    @JoinColumn(name="project_id",nullable = false)
     @JsonIgnore
     private Project project;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "backlog")
+    //OneToMany projecttasks
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "backlog", orphanRemoval = true)
     private List<ProjectTask> projectTasks = new ArrayList<>();
+    //Cascade REFRESH
+    //ORPHAN REMOVAL
+
 
     public Backlog() {
     }
@@ -42,11 +48,11 @@ public class Backlog {
     }
 
     public String getProjectIdentifier() {
-        return ProjectIdentifier;
+        return projectIdentifier;
     }
 
     public void setProjectIdentifier(String projectIdentifier) {
-        ProjectIdentifier = projectIdentifier;
+        this.projectIdentifier = projectIdentifier;
     }
 
     public Project getProject() {
@@ -56,4 +62,14 @@ public class Backlog {
     public void setProject(Project project) {
         this.project = project;
     }
+
+    public List<ProjectTask> getProjectTasks() {
+        return projectTasks;
+    }
+
+    public void setProjectTasks(List<ProjectTask> projectTasks) {
+        this.projectTasks = projectTasks;
+    }
+
+
 }
